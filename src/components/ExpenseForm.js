@@ -20,7 +20,7 @@ export class ExpenseForm extends React.Component {
     onAmountChange = (e) => {
         // le ha puesto input type number para poder hacer la validacion
         const amount = e.target.value;
-        if (amount.match(/^\d*(\.\d{0,2})?$/)) {
+        if (amount.match(/^\d{1,}(\.\d{0,2})?$/)) {
             this.setState(() => ({ amount }));
         }
     };
