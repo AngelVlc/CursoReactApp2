@@ -74,18 +74,21 @@ const added = store.dispatch(addExpense({ description: 'nuevo2' }));
 store.dispatch(removeExpense({ id: added.expense.id }));
 
 
-// const demoState = {
-//     expenses: [{
-//         id: 'asdsa',
-//         description: 'dsaklsdaklsda',
-//         note: 'asdsdadsa',
-//         amount: 10067,
-//         createdAt: 0
-//     }],
-//     filters: {
-//         text: 'sdasdasda',
-//         sortBy: 'amount', // date or amount
-//         startDate: undefined,
-//         endDate: undefined
-//     }
-// };
+const demoState = {
+    expenses: [{
+        id: 'asdsa',
+        description: 'dsaklsdaklsda',
+        note: 'asdsdadsa',
+        amount: 10067,
+        createdAt: 0
+    }],
+    filters: {
+        text: 'sdasdasda',
+        sortBy: 'amount', // date or amount
+        startDate: undefined,
+        endDate: undefined
+    }
+};
+
+
+console.log('spread obj', {...demoState, nuevoCampo:  292929});
