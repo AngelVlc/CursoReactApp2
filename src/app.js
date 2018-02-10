@@ -20,10 +20,6 @@ store.dispatch(addExpense({ description: 'nuevo3', createdAt: 6000, amount: 90 }
 store.dispatch(addExpense({ description: 'nuevo4', createdAt: 7000, amount: 75 }));
 //store.dispatch(setTextFilter('nuevo3'));
 
-setTimeout(() => {
-    console.log('s');
-    store.dispatch(setTextFilter('nuevo3'));
-}, 3000 )
 
 const state = store.getState();
 const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
