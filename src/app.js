@@ -1,49 +1,66 @@
-// Higher order component (HOC): A react component (HOC) 
-// that renders another component (regular component)
-// Ventajas: reuse code, render hijacking, prop manipulation and abstract state
-
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import AppRouter from './routers/AppRouter';
+import configureStore from './store/configureStore';
 
-const Info = (props) => (
-    <div>
-        <h1>Info</h1>
-        <p>The info is: {props.info}</p>
-    </div>
+import { addExpense } from './actions/expenses';
+import { setTextFilter } from './actions/filters';
+import getVisibleExpenses from './selectors/expenses';
+
+import 'normalize.css/normalize.css';
+import './styles/styles.scss';
+
+
+const store = configureStore();
+
+const first = store.dispatch(addExpense({ description: 'nuevo', createdAt: 1000, amount: 50 }));
+const second = store.dispatch(addExpense({ description: 'nuevo2' }));
+store.dispatch(addExpense({ description: 'nuevo3', createdAt: 6000, amount: 90 }));
+store.dispatch(addExpense({ description: 'nuevo4', createdAt: 7000, amount: 75 }));
+//store.dispatch(setTextFilter('nuevo3'));
+
+setTimeout(() => {
+    console.log('s');
+    store.dispatch(setTextFilter('nuevo3'));
+}, 3000 )
+
+const state = store.getState();
+const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
+console.log(visibleExpenses);
+
+const jsx = (
+    <Provider store={store}>
+        <AppRouter />
+    </Provider>
 );
 
-
-const withAdminWarning = (WrappedComponent) => {
-    // este es el HOC
-    return (props) => (
-        <div>
-            {props.isAdmin && <p>Esto es privado (mensaje del admin)</p>}
-            <WrappedComponent {...props} />
-        </div>
-    );
-};
-
-const AdminInfo = withAdminWarning(Info);
-
-const requireAuthentication = (WrappedComponent) => {
-    // este es el HOC
-    return (props) => (
-        <div>
-            {props.isAuthenticated ? (
-                <div>
-                    <p>authenticated</p>
-                    <WrappedComponent {...props} />
-                </div>
-            ) : (
-                <p>Please login</p>
-            )}
-
-        </div>
-    );
-};
-
-const AuthInfo = requireAuthentication(Info);
+ReactDOM.render(jsx, document.getElementById('app'));
 
 
-// ReactDOM.render(<AdminInfo isAdmin={false} info="detalle" />, document.getElementById('app'));
-ReactDOM.render(<AuthInfo isAuthenticated={false} info="detalle" />, document.getElementById('app'));
+
+// store.subscribe(() => {
+//     const state = store.getState();
+//     const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
+//     console.log(visibleExpenses);
+// });
+
+// const first = store.dispatch(addExpense({ description: 'nuevo', createdAt: 1000, amount: 50 }));
+// const second = store.dispatch(addExpense({ description: 'nuevo2' }));
+// store.dispatch(addExpense({ description: 'nuevo3', createdAt: 6000, amount: 90 }));
+// store.dispatch(addExpense({ description: 'nuevo4', createdAt: 7000, amount: 75 }));
+
+// store.dispatch(removeExpense({ id: second.expense.id }));
+
+// store.dispatch(editExpense(first.expense.id, { description: 'nuevoRRR' }));
+
+// //store.dispatch(setTextFilter('nuevo3'));
+
+//  store.dispatch(sortByAmount());
+// // store.dispatch(sortByDate());
+
+// //store.dispatch(setStartDate(6000));
+// //store.dispatch(setStartDate());
+// //store.dispatch(setEndDate(120));
+
+
