@@ -15,3 +15,4 @@ Babel ES6/ES7
 ## Extensiones para el navegador
 
 React Dev Tools
+Redux Dev Tools
