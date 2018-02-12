@@ -6,14 +6,14 @@ export const sortByDate = () => ({
     type: 'SORT_BY_DATE'
 });
 
-export const setStartDate = (newDate = undefined) => ({
+export const setStartDate = (startDate = undefined) => ({
     type: 'SET_START_DATE',
-    newDate
+    startDate
 })
 
-export const setEndDate = (newDate = undefined) => ({
+export const setEndDate = (endDate = undefined) => ({
     type: 'SET_END_DATE',
-    newDate
+    endDate
 })
 
 export const setTextFilter = (newText = '') => ({
