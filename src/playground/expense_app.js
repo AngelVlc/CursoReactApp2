@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import AppRouter from './routers/AppRouter';
 import configureStore from './store/configureStore';
 
@@ -17,14 +18,20 @@ const first = store.dispatch(addExpense({ description: 'nuevo', createdAt: 1000,
 const second = store.dispatch(addExpense({ description: 'nuevo2' }));
 store.dispatch(addExpense({ description: 'nuevo3', createdAt: 6000, amount: 90 }));
 store.dispatch(addExpense({ description: 'nuevo4', createdAt: 7000, amount: 75 }));
-store.dispatch(setTextFilter('nuevo3'));
-
-const state = store.getState();
-const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
-console.log(visibleExpenses);
+//store.dispatch(setTextFilter('nuevo3'));
 
 
-ReactDOM.render(<AppRouter />, document.getElementById('app'));
+// const state = store.getState();
+// const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
+// console.log(visibleExpenses);
+
+const jsx = (
+    <Provider store={store}>
+        <AppRouter />
+    </Provider>
+);
+
+ReactDOM.render(jsx, document.getElementById('app'));
 
 
 
