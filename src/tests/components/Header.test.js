@@ -2,7 +2,6 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import ReactShallowRenderer from 'react-test-renderer/shallow';
 import Header from '../../components/Header';
-import toJSON from 'enzyme-to-json';
 
 // se usa shallow renderer pq solo me importa como se renderiza el componente,
 // puesto que no tiene estado
@@ -31,8 +30,4 @@ test('should render Header correctly with enzyme', () => {
     expect(wrapper.find('h1').text()).toBe('Expensify');
 });
 
-test('enzyme con snapshot', () => {
-    const wrapper = shallow(<Header />);
-    //esto es para que las snapshot no tengan tanta morralla de enzyme
-    expect(toJSON(wrapper)).toMatchSnapshot()
-});
+ 
