@@ -20,3 +20,14 @@ Babel ES6/ES7
 
 React Dev Tools
 Redux Dev Tools
+
+
+## Urls
+Redux -> https://redux.js.org/docs/introduction/
+
+airbnb DatePicker -> https://github.com/airbnb/react-dates
+
+Tests:
+jest -> https://facebook.github.io/jest/
+airbnb enzyme -> https://github.com/airbnb/enzyme
+
