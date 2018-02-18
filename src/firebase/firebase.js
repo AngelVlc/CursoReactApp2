@@ -1,6 +1,15 @@
 import * as firebase from 'firebase';
 
-import config from './firebase.config';
+const config = {
+    apiKey: process.env.FIREBASE_apikey,
+    authDomain: process.env.FIREBASE_authDomain,
+    databaseURL: process.env.FIREBASE_databaseURL,
+    projectId: process.env.FIREBASE_projectId,
+    storageBucket: process.env.FIREBASE_storageBucket,
+    messagingSenderId: process.env.FIREBASE_messagingSenderId
+  };
+
+console.log(config);
 
 firebase.initializeApp(config);
 

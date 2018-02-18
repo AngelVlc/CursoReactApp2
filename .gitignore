@@ -44,3 +44,5 @@ Thumbs.db
 
 public/dist/
 src/firebase/firebase.config.js
+.env.test
+.env.development
