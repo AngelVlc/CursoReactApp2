@@ -27,5 +27,10 @@ exports[`should render Header correctly with react-test-renderer 1`] = `
   >
     Help
   </NavLink>
+  <button
+    onClick={[Function]}
+  >
+    Logout
+  </button>
 </header>
 `;

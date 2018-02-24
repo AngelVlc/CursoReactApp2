@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import ReactShallowRenderer from 'react-test-renderer/shallow';
-import Header from '../../components/Header';
+import { Header } from '../../components/Header';
 
 // se usa shallow renderer pq solo me importa como se renderiza el componente,
 // puesto que no tiene estado
@@ -9,7 +9,7 @@ import Header from '../../components/Header';
 
 test('should render Header correctly with react-test-renderer', () => {
     const renderer = new ReactShallowRenderer();
-    renderer.render(<Header />);
+    renderer.render(<Header startLogout={() => {}}/>);
     //console.log(renderer.getRenderOutput());
 
     //la primera vez q se lanzan el test siempre va a ser OK 
@@ -24,10 +24,18 @@ test('should render Header correctly with react-test-renderer', () => {
 
 
 test('should render Header correctly with enzyme', () => {
-    const wrapper = shallow(<Header />);
+    const wrapper = shallow(<Header startLogout={() => {}}/>);
 
     //el find tb puede ser por id con # o por clase con .
     expect(wrapper.find('h1').text()).toBe('Expensify');
 });
 
+test('should call startLogout on button click', () => {
+    const startLogout = jest.fn();
+    const wrapper = shallow(<Header startLogout={startLogout}/>);
+
+    wrapper.find('button').simulate('click');
+
+    expect(startLogout).toHaveBeenCalled();
+});
  
