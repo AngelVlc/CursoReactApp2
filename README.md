@@ -31,6 +31,29 @@ Redux Dev Tools
       "$user_id": {
         ".read": "$user_id === auth.uid",
     		".write": "$user_id === auth.uid",
+        "expenses": {
+          "$expense_id": {
+            ".validate": "newData.hasChildren(['description', 'note', 'amount', 'createdAt'])",
+            "description": {
+              ".validate": "newData.isString() && newData.val().length > 0"
+            },
+            "amount": {
+              ".validate": "newData.isNumber()"
+            },
+            "note": {
+              ".validate": "newData.isString()"
+            },
+            "createdAt": {
+              ".validate": "newData.isNumber()"
+            },
+            "$other": {
+		          ".validate": false
+		        }
+          }
+        },
+        "$other": {
+          ".validate": false
+        }
       }
     }  
   }
