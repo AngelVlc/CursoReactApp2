@@ -21,6 +21,20 @@ Babel ES6/ES7
 React Dev Tools
 Redux Dev Tools
 
+## Firebase rules
+
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "users": {
+      "$user_id": {
+        ".read": "$user_id === auth.uid",
+    		".write": "$user_id === auth.uid",
+      }
+    }  
+  }
+}
 
 ## Urls
 Redux -> https://redux.js.org/docs/introduction/
